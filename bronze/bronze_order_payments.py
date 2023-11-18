@@ -33,4 +33,12 @@ if not is_timestamp_expectation["success"]:
 
 # COMMAND ----------
 
+# Expectation to check the uniqueness of the combination of review_id and order_id
+compound_columns_unique_expectation = ge_bronze_order_payments_df.expect_compound_columns_to_be_unique(column_list=["order_id", "payment_sequential"])
+
+if not compound_columns_unique_expectation["success"]:
+    raise ValueError(f"Duplicate entries found for the combination of review_id and order_id: {compound_columns_unique_expectation}")
+
+# COMMAND ----------
+
 bronze_order_payments_df.write.option("path", bronze_order_payments_path).format("delta").mode("overwrite").saveAsTable(bronze_order_payments_table_name)
