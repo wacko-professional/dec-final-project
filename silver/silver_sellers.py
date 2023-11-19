@@ -7,10 +7,6 @@
 
 # COMMAND ----------
 
-# MAGIC %run "../silver/utils"
-
-# COMMAND ----------
-
 # MAGIC %run "./utils"
 
 # COMMAND ----------
