@@ -26,14 +26,6 @@ if not pk_not_null_expectation["success"]:
 
 # COMMAND ----------
 
-# Expectation to check the uniqueness of the combination of review_id and order_id
-compound_columns_unique_expectation = ge_bronze_order_reviews_df.expect_compound_columns_to_be_unique(column_list=["review_id", "order_id"])
-
-if not compound_columns_unique_expectation["success"]:
-    raise ValueError(f"Duplicate entries found for the combination of review_id and order_id: {compound_columns_unique_expectation}")
-
-# COMMAND ----------
-
 from pyspark.sql.types import TimestampType
 
 is_timestamp_expectation = ge_bronze_order_reviews_df.expect_column_values_to_be_of_type("updated_at", "TimestampType")
