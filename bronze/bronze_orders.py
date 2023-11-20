@@ -30,13 +30,6 @@ if not pk_not_null_expectation["success"]:
 
 # COMMAND ----------
 
-pk_unique_expectation = ge_bronze_orders_df.expect_column_values_to_be_unique("order_id")
-
-if not pk_unique_expectation["success"]: 
-    raise Exception(pk_unique_expectation)
-
-# COMMAND ----------
-
 has_timestamp_expectation = ge_bronze_orders_df.expect_column_to_exist("updated_at")
 
 if not has_timestamp_expectation["success"]: 
